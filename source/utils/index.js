@@ -5,6 +5,11 @@ const tagStripSerializer = (element, content) => striptags(content)
 const fieldString = (field, docType) => docType ? `${docType}.${field}` : field
 
 export default (prismic, docType) => ({
+  
+  getDate (date) {
+    return prismic.getDate(fieldString(date, docType)) || new Date()
+  },
+  
   getImage (image) {
     return prismic.getImage(fieldString(image, docType)) && prismic.getImage(fieldString(image, docType)).main
   },
